@@ -1,5 +1,5 @@
 jobs:
-  - name: basic-node-deploy-ecs_runCI
+  - name: deploy-ecs_runCI
     type: runCI
     steps:
       - OUT: basic-node-image
