@@ -1,0 +1,22 @@
+resources:
+  - name: basic-node-image
+    type: image
+    integration: dr-dockerhub
+    pointer:
+      sourceName: "devopsrecipes/basic-node-deploy-ecs"
+      isPull: false
+    seed:
+      versionName: "latest"
+
+  - name: docker-options
+    type: dockerOptions
+    version:
+      portMappings:
+        - 80:80
+
+  - name: ecs-cluster
+    type: cluster
+    integration: aws
+    pointer:
+      sourceName : "basic-node-deploy-ecs" #name of the cluster to which we are deploying
+      region: "us-east-1"

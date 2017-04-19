@@ -1,0 +1,20 @@
+jobs:
+  - name: basic-node-deploy-ecs_runCI
+    type: runCI
+    steps:
+      - OUT: basic-node-image
+
+  - name: basic-node-manifest
+    type: manifest
+    steps:
+     - IN: basic-node-image
+     - TASK: managed
+
+  - name: deploy-ecs
+    type: deploy
+    steps:
+      - IN: basic-node-manifest
+      - IN: docker-options
+      - IN: ecs-cluster
+      - TASK: managed
+        deployMethod: upgrade
