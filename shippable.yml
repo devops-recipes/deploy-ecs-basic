@@ -36,7 +36,7 @@ build:
   post_ci:
     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
     - docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
-    - echo "versionName=$BRANCH.$BUILD_NUMBER" >> $JOB_STATE/$DOCKER_REPO.env
+    - echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/basic-node-image.env
 
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/
