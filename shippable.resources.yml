@@ -16,7 +16,7 @@ resources:
 
   - name: ecs-cluster
     type: cluster
-    integration: aws
+    integration: dr-aws
     pointer:
       sourceName : "basic-node-deploy-ecs" #name of the cluster to which we are deploying
       region: "us-east-1"
