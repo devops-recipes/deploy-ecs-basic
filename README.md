@@ -1,6 +1,6 @@
 # Deploy a Node.js application to Amazon ECS
 
-[![Run Status](https://api.shippable.com/projects/58f002c7c585000700aef8ca/badge?branch=master)](https://app.shippable.com/github/devops-recipes/push-docker-hub) [![Coverage Badge](https://api.shippable.com/projects/58f002c7c585000700aef8ca/coverageBadge?branch=master)](https://app.shippable.com/github/devops-recipes/push-docker-hub)
+[![Run Status](https://api.shippable.com/projects/58f6fcddd1780a07007bba3f/badge?branch=master)](https://app.shippable.com/github/devops-recipes/deploy-ecs) [![Coverage Badge](https://api.shippable.com/projects/58f6fcddd1780a07007bba3f/coverageBadge?branch=master)](https://app.shippable.com/github/devops-recipes/deploy-ecs)
 
 ![AyeAye](https://github.com/devops-recipes/push-docker-hub/blob/master/public/resources/images/captain.png)
 
