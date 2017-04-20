@@ -1,21 +1,26 @@
 resources:
-  - name: basic-node-image
+  - name: deploy-ecs-basic-image
     type: image
-    integration: dr-dockerhub
+    flags:
+      - deploy-ecs-basic
+    integration: dr-ecr
     pointer:
-      sourceName: "devopsrecipes/basic-node-deploy-ecs"
-      isPull: false
+      sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic"
     seed:
       versionName: "latest"
 
-  - name: docker-options
+  - name: deploy-ecs-basic-docker-options
     type: dockerOptions
+    flags:
+      - deploy-ecs-basic
     version:
       portMappings:
         - 80:80
 
-  - name: ecs-cluster
+  - name: deploy-ecs-basic-ecs-cluster
     type: cluster
+    flags:
+      - deploy-ecs-basic
     integration: dr-aws
     pointer:
       sourceName : "basic-node-deploy-ecs" #name of the cluster to which we are deploying
