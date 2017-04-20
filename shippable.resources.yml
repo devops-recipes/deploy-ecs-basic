@@ -14,8 +14,26 @@ resources:
     flags:
       - deploy-ecs-basic
     version:
+      memory: 100
       portMappings:
         - 80:80
+
+
+  - name: deploy-ecs-basic-params
+    type: params
+    flags:
+      - deploy-ecs-basic
+    version:
+      params:
+        PORT: 80
+        ENVIRONMENT: "dev"
+
+  - name: deploy-ecs-basic-replicas
+    type: replicas
+    flags:
+      - deploy-ecs-basic
+    version:
+      count: 1
 
   - name: deploy-ecs-basic-ecs-cluster
     type: cluster
