@@ -13,6 +13,8 @@ jobs:
     steps:
      - IN: deploy-ecs-basic-image
      - IN: deploy-ecs-basic-docker-options
+     - IN: deploy-ecs-basic-params
+     - IN: deploy-ecs-basic-replicas
 
   - name: deploy-ecs-basic-deploy
     type: deploy
@@ -20,7 +22,6 @@ jobs:
       - deploy-ecs-basic
     steps:
       - IN: deploy-ecs-basic-manifest
-
       - IN: deploy-ecs-basic-ecs-cluster
       - TASK: managed
         deployMethod: replace
