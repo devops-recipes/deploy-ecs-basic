@@ -33,9 +33,9 @@ build:
 
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-    - docker build -t $ECR_REPO:$BRANCH.$BUILD_NUMBER .
-    - docker push $ECR_REPO:$BRANCH.$BUILD_NUMBER
-    - echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-ecs-basic-image.env
+    - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker build -t $ECR_REPO:$BRANCH.$BUILD_NUMBER .; fi'
+    - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker push $ECR_REPO:$BRANCH.$BUILD_NUMBER ; fi'
+    - 'if [ $IS_PULL_REQUEST == "false" ] ; then echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-ecs-basic-image.env ; fi'
 
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/

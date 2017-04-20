@@ -1,10 +1,10 @@
 jobs:
-  - name: deploy-ecs-basic_runCI
-    type: runCI
-    flags:
-      - deploy-ecs-basic
-    steps:
-      - OUT: deploy-ecs-basic-image
+  # - name: deploy-ecs-basic_runCI
+  #   type: runCI
+  #   flags:
+  #     - deploy-ecs-basic
+  #   steps:
+  #     - OUT: deploy-ecs-basic-image
 
   - name: deploy-ecs-basic-manifest
     type: manifest
