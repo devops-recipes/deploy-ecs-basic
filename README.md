@@ -22,9 +22,7 @@ A simple Node JS application with unit tests and coverage reports using mocha an
 ![CI Integration View](https://github.com/devops-recipes/deploy-ecs-basic/blob/master/public/resources/images/integration-creation.png)
 
 ### CI Console Output
-
 ![CI Console Output](https://github.com/devops-recipes/deploy-ecs-basic/blob/master/public/resources/images/console.jpg)
-
 
 ### blahblahblah
 test
