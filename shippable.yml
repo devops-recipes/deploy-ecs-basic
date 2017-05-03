@@ -6,6 +6,7 @@ language: node_js
 branches:
   only:
     - master
+    - test
 
 # using pre-defined build variables
 # full list http://docs.shippable.com/ci/advancedOptions/environmentVariables/
