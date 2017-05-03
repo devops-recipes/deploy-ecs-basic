@@ -9,16 +9,6 @@ resources:
     seed:
       versionName: "latest"
 
-  - name: deploy-ecs-basic-docker-options
-    type: dockerOptions
-    flags:
-      - deploy-ecs-basic
-    version:
-      memory: 100
-      portMappings:
-        - 80:80
-
-
   - name: deploy-ecs-basic-params
     type: params
     flags:
@@ -27,6 +17,15 @@ resources:
       params:
         PORT: 80
         ENVIRONMENT: "dev"
+
+  - name: deploy-ecs-basic-docker-options
+    type: dockerOptions
+    flags:
+      - deploy-ecs-basic
+    version:
+      memory: 100
+      portMappings:
+        - 80:80
 
   - name: deploy-ecs-basic-replicas
     type: replicas
