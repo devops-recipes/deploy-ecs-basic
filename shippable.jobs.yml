@@ -6,19 +6,6 @@ jobs:
     steps:
       - OUT: deploy-ecs-basic-image
 
-  - name: deploy-ecs-basic-manifest
-    type: manifest
-    flags:
-      - deploy-ecs-basic
-    steps:
-     - IN: deploy-ecs-basic-image
-     - IN: deploy-ecs-basic-docker-options
-     - IN: deploy-ecs-basic-params
-     - IN: deploy-ecs-basic-replicas
-
-
-
-
   - name: deploy-ecs-basic-deploy
     type: deploy
     flags:
@@ -28,3 +15,13 @@ jobs:
       - IN: deploy-ecs-basic-ecs-cluster
       - TASK: managed
         deployMethod: replace
+
+  - name: deploy-ecs-basic-manifest
+    type: manifest
+    flags:
+      - deploy-ecs-basic
+    steps:
+     - IN: deploy-ecs-basic-image
+     - IN: deploy-ecs-basic-docker-options
+     - IN: deploy-ecs-basic-params
+     - IN: deploy-ecs-basic-replicas
