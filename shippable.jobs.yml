@@ -18,10 +18,9 @@ jobs:
 
   - name: deploy-ecs-basic-deploy
     type: deploy
+    method: replace
     flags:
       - deploy-ecs-basic
     steps:
       - IN: deploy-ecs-basic-manifest
       - IN: deploy-ecs-basic-ecs-cluster
-      - TASK: managed
-        deployMethod: replace
