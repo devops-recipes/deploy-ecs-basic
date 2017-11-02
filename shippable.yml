@@ -46,3 +46,78 @@ integrations:
   hub:
     - integrationName: dr-aws-keys
       type: amazonKeys
+
+
+resources:
+  - name: deploy-ecs-basic-image
+    type: image
+    flags:
+      - deploy-ecs-basic
+    integration: dr-aws-keys
+    pointer:
+      sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic"
+    seed:
+      versionName: "latest"
+
+  - name: deploy-ecs-basic-params
+    type: params
+    flags:
+      - deploy-ecs-basic
+    version:
+      params:
+        PORT: 80
+        ENVIRONMENT: "dev"
+
+  - name: deploy-ecs-basic-docker-options
+    type: dockerOptions
+    flags:
+      - deploy-ecs-basic
+    version:
+      memory: 100
+      portMappings:
+        - 80:80
+
+  - name: deploy-ecs-basic-replicas
+    type: replicas
+    flags:
+      - deploy-ecs-basic
+    version:
+      count: 1
+
+  - name: deploy-ecs-basic-ecs-cluster
+    type: cluster
+    flags:
+      - deploy-ecs-basic
+    integration: dr-aws-keys
+    pointer:
+      sourceName : "deploy-ecs-basic" #name of the cluster to which we are deploying
+      region: "us-east-1"
+
+
+jobs:
+  # - name: deploy-ecs-basic_runCI
+  #   type: runCI
+  #   flags:
+  #     - deploy-ecs-basic
+  #   steps:
+  #     - OUT: deploy-ecs-basic-image
+
+  - name: deploy-ecs-basic-manifest
+    type: manifest
+    flags:
+      - deploy-ecs-basic
+    steps:
+     - IN: deploy-ecs-basic-image
+     - IN: deploy-ecs-basic-docker-options
+     - IN: deploy-ecs-basic-params
+     - IN: deploy-ecs-basic-replicas
+
+  - name: deploy-ecs-basic-deploy
+    type: deploy
+    flags:
+      - deploy-ecs-basic
+    steps:
+      - IN: deploy-ecs-basic-manifest
+      - IN: deploy-ecs-basic-ecs-cluster
+      - TASK: managed
+        deployMethod: replace
