@@ -3,7 +3,7 @@ resources:
     type: image
     flags:
       - deploy-ecs-basic
-    integration: dr-awskeys
+    integration: dr-aws-keys
     pointer:
       sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic"
     seed:
