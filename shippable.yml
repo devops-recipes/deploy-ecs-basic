@@ -36,7 +36,7 @@ build:
   post_ci:
     - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker build -t $ECR_REPO:$BRANCH.$BUILD_NUMBER .; fi'
     - 'if [ $IS_PULL_REQUEST == "false" ] ; then docker push $ECR_REPO:$BRANCH.$BUILD_NUMBER ; fi'
-    - 'if [ $IS_PULL_REQUEST == "false" ] ; then echo "versionName=$BRANCH.$BUILD_NUMBER" > $JOB_STATE/deploy-ecs-basic-image.env ; fi'
+    - 'if [ $IS_PULL_REQUEST == "false" ] ; then shipctl post_resource_state deploy-ecs-basic-image versionName $BRANCH.$BUILD_NUMBER; fi'
 
 # Integrations are used to connect external resources to CI
 # http://docs.shippable.com/integrations/overview/
@@ -95,12 +95,12 @@ resources:
 
 
 jobs:
-  # - name: deploy-ecs-basic_runCI
-  #   type: runCI
-  #   flags:
-  #     - deploy-ecs-basic
-  #   steps:
-  #     - OUT: deploy-ecs-basic-image
+  - name: deploy-ecs-basic_runCI
+    type: runCI
+    flags:
+      - deploy-ecs-basic
+    steps:
+      - OUT: deploy-ecs-basic-image
 
   - name: deploy-ecs-basic-manifest
     type: manifest
