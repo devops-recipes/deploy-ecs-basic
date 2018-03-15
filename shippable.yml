@@ -55,7 +55,7 @@ resources:
       - deploy-ecs-basic
     integration: dr-aws-keys
     pointer:
-      sourceName: "679404489841.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic"
+      sourceName: "660850653279.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic"
     seed:
       versionName: "latest"
 
