@@ -88,7 +88,7 @@ resources:
     type: cluster
     flags:
       - deploy-ecs-basic
-    integration: dr-aws-keys
+    integration: awskeys
     pointer:
       sourceName : "deploy-ecs-basic" #name of the cluster to which we are deploying
       region: "us-east-1"
