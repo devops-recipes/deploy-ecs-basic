@@ -16,7 +16,7 @@ env:
     - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
-    - ECR_REPO=679404489841.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic
+    - ECR_REPO=660850653279.dkr.ecr.us-east-1.amazonaws.com/deploy-ecs-basic
 
 build:
 
