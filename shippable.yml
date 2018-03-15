@@ -66,7 +66,9 @@ resources:
 
   - name: deploy-ecs-basic-docker-options
     type: dockerOptions
-    version:
+    versionTemplate:
+      linuxParameters:
+        initProcessEnabled: true
       memory: 100
       portMappings:
         - 80:80
