@@ -6,21 +6,46 @@
 
 A simple Node JS application with unit tests and coverage reports using mocha and istanbul. It also does a docker build once CI passes and then pushes the image to Amazon EC2 Container Registry
 
-## Run CI for this repo on Shippable
-* Fork this repository into your account
-* Login into [Shippable](wwww.shippable.com)
-* In the Shippable UI, create an [integration](http://docs.shippable.com/platform/integration/aws-keys/) for Amazon ECR. Name your integration `dr-aws-keys`
-* All CI configuration is in **shippable.yml**. CI reference is [here](http://docs.shippable.com/ci/yml-structure/). 
-* Follow these [CI Setup Instructions](http://docs.shippable.com/ci/runFirstBuild/) if you have never used Shippable CI Service
-* In **shippable.yml**:
-    * Update the integrationName in the integration.hub section if you used something other than `dr-aws-keys`
-    * Change the ECR_REPO to point to your repo
-* You should now be able to run a manual build or webhook build on commit
+## Setup
 
-## CI Reports on Shippable
+To run this example successfully, you must first perform some setup steps to customize **shippable.yml** to point to your ECR and ECS accounts. 
 
-### CI Integration View
-![CI Integration View](https://github.com/devops-recipes/deploy-ecs-basic/blob/master/public/resources/images/integration-creation.png)
+### 1. Create an AWS integration
 
-### CI Console Output
-![CI Console Output](https://github.com/devops-recipes/deploy-ecs-basic/blob/master/public/resources/images/console.jpg)
+In order to allow Shippable to connect to your AWS services, you need to add an [integration](http://docs.shippable.com/platform/integration/overview/) through the Shippable UI. This integration will be referenced in the YAML as needed.
+
+Log in to [Shippable](wwww.shippable.com) and follow instructions in the docs to [create an AWS keys integration](http://docs.shippable.com/platform/integration/aws-keys/). Note down the name of the integration you created.
+
+### 2. Update YAML
+
+Fork this repository to your account. 
+
+All configuration is stored in the **shippable.yml** file at the root of this repository. You will need to make the following updates to customize the standard YAML included with this example:
+
+* Change ECR_REPO (line 19) to point to your ECR repo. Please make sure the repo already exists on ECR.
+* Update the `integrationName`(47) in the integration.hub section with the name of your AWS integration.
+* Under `resources`, update the deploy-ecs-basic-image resource with the following:
+   * `integration` should point to your AWS integration name
+   * `sourceName` should point to the ECR repo
+* Under `resources`, update the deploy-ecs-basic-ecs-cluster resource with the following:
+   * `integration` should point to your AWS integration name
+   * `sourceName` should point to your ECS cluster name. Please make sure the cluster already exists.
+   * `region` should point to the region of your ECS cluster.
+
+Commit your changes to source control.
+
+## Run CI: Run some tests, build a Docker image and push to ECR
+
+* [Enable your project for CI on Shippable](http://docs.shippable.com/ci/enable-project/) 
+* Commit a small change to your repository (add a space or character in readme file). This will automatically trigger a build on Shippable. You can also trigger a manual build through the Shippable UI.
+* The build will build your Docker image and push it to ECR.
+
+## Enable the CD workflow: Deploy container to ECS
+
+* Next, you need to enable config to deploy your Docker container to ECS. This logic is contained in the `jobs` and `resources` sections of your YAML, which is known as Assembly Line config in Shippable.
+* [Add your Assembly Line](http://docs.shippable.com/platform/tutorial/workflow/add-assembly-line/). This will ensure that your `jobs` and `resources` sections are read.
+* Rerun your CI job with another commit to the repository or with a manual build. The workflow should now trigger end to end and your container should be deployed to ECS.
+
+
+
+
