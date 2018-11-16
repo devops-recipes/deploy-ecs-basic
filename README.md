@@ -7,14 +7,15 @@
 A simple Node JS application with unit tests and coverage reports using mocha and istanbul. It also does a docker build once CI passes and then pushes the image to Amazon EC2 Container Registry
 
 ## Run CI for this repo on Shippable
-* Fork this repo into your local repo
-* Login into the [Continuous Integration Service](wwww.shippable.com)
-* Create an [integration](http://docs.shippable.com/platform/integration/aws-keys/) on shippable to your Amazon ECR
-* All CI configuration is in `shippable.yml`
+* Fork this repository into your account
+* Login into [Shippable](wwww.shippable.com)
+* In the Shippable UI, create an [integration](http://docs.shippable.com/platform/integration/aws-keys/) for Amazon ECR. Name your integration `dr-aws-keys`
+* All CI configuration is in **shippable.yml**. CI reference is [here](http://docs.shippable.com/ci/yml-structure/). 
 * Follow these [CI Setup Instructions](http://docs.shippable.com/ci/runFirstBuild/) if you have never used Shippable CI Service
-* Update the integrationName in the integration.hub section if you used something other than `dr-aws-keys`
-* Change the ECR_REPO to point to your repo
-* You should be able to run a manual build or webhook build on commit
+* In **shippable.yml**:
+    * Update the integrationName in the integration.hub section if you used something other than `dr-aws-keys`
+    * Change the ECR_REPO to point to your repo
+* You should now be able to run a manual build or webhook build on commit
 
 ## CI Reports on Shippable
 
